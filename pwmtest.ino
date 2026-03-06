@@ -5,7 +5,8 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver(0x40);
 Adafruit_PWMServoDriver pwm2 = Adafruit_PWMServoDriver(0x41);
 
 char r = 0; int c = 0;
-byte a[2];
+//byte a[2];
+String a;
 //bool COMM;
 int i=0;
 
@@ -29,14 +30,21 @@ void loop(){
       }
       while(COMM){*/
       if(Serial.available()){
-            Serial.readBytes(a, 2);
+            //Serial.readBytes(a, 2);
+            for (int i=0; i<16; i++){
+                  pwm.setPWM(i, 0, 0);
+            }
+            for (int i = 0; i<16; i++){
+                  pwm2.setPWM(i, 0, 0);
+           }
+            a = Serial.readString();
             /*do{
                   Serial.println(char(a[0]));Serial.println(a[1]);
                   delay(10000);
             }
             while(i<10);//{Serial.println(char(a[0]));Serial.println(a[1]);}*/
-            r = a[0];
-            c = a[1];
+            r = a.charAt(0);
+            c = a.charAt(1);
       //}
       
       switch (r){
@@ -84,59 +92,57 @@ void loop(){
             
             }
             switch(c){
-                  case 1:  //Turn on column1
-                        pwm.setPWM(c+7, 0, 4095);
+                  case '1':  //Turn on column1
+                        pwm.setPWM(int(c)-41, 0, 4095);
                         break;
-                  case 2:  //Turn on column2
-                        pwm.setPWM(c+7, 0, 4095);
+                  case '2':  //Turn on column2
+                        pwm.setPWM(int(c)-41, 0, 4095);
                         break;
-                  case 3:  //Turn on column3
-                        pwm.setPWM(c+7, 0, 4095);
+                  case '3':  //Turn on column3
+                        pwm.setPWM(int(c)-41, 0, 4095);
                         break;
-                  case 4:  //Turn on column4
-                        pwm.setPWM(c+7, 0, 4095);
+                  case '4':  //Turn on column4
+                        pwm.setPWM(int(c)-41, 0, 4095);
                         break;
-                  case 5:  //Turn on column5
-                        pwm.setPWM(c+7, 0, 4095);
+                  case '5':  //Turn on column5
+                        pwm.setPWM(int(c)-41, 0, 4095);
                         break;
-                  case 6:  //Turn on column6
-                        pwm.setPWM(c+7, 0, 4095);
+                  case '6':  //Turn on column6
+                        pwm.setPWM(int(c)-41, 0, 4095);
                         break;
-                  case 7:  //Turn on column7
-                        pwm.setPWM(c+7, 0, 4095);
+                  case '7':  //Turn on column7
+                        pwm.setPWM(int(c)-41, 0, 4095);
                         break;
-                  case 8:  //Turn on column8
-                        pwm.setPWM(c+7, 0, 4095);
+                  case '8':  //Turn on column8
+                        pwm.setPWM(int(c)-41, 0, 4095);
                         break;
-                  case 9:  //Turn on column9
-                        pwm2.setPWM(c-9, 0, 4095);
+                  case '9':  //Turn on column9
+                        pwm2.setPWM(int(c)-57, 0, 4095);
                         break;
-                  case 10:  //Turn on column10
-                        pwm2.setPWM(c-9, 0, 4095);
+                  case '10':  //Turn on column10
+                        pwm2.setPWM(int(c)-57, 0, 4095);
                         break;
-                  case 11:  //Turn on column11
-                        pwm2.setPWM(c-9, 0, 4095);
+                  case '11':  //Turn on column11
+                        pwm2.setPWM(int(c)-57, 0, 4095);
                         break;
-                  case 12:  //Turn on column12
-                        pwm2.setPWM(c-9, 0, 4095);
+                  case '12':  //Turn on column12
+                        pwm2.setPWM(int(c)-57, 0, 4095);
                         break;
-                  case 13:  //Turn on column13
-                        pwm2.setPWM(c-9, 0, 4095);
+                  case '13':  //Turn on column13
+                        pwm2.setPWM(int(c)-57, 0, 4095);
                         break;
-                  case 14:  //Turn on column14
-                        pwm2.setPWM(c-9, 0, 4095);
+                  case '14':  //Turn on column14
+                        pwm2.setPWM(int(c)-57, 0, 4095);
                         break;
-                  case 15:  //Turn on column15
-                        pwm2.setPWM(c-9, 0, 4095);
+                  case '15':  //Turn on column15
+                        pwm2.setPWM(int(c)-57, 0, 4095);
                         break;
-                  case 16:  //Turn on column16
-                        pwm2.setPWM(c-9, 0, 4095);
+                  case '16':  //Turn on column16
+                        pwm2.setPWM(int(c)-57, 0, 4095);
                         break;
-                  case 17:  //Turn on column17
-                        pwm2.setPWM(c-9, 0, 4095);
+                  case '17':  //Turn on column17
+                        pwm2.setPWM(int(c)-57, 0, 4095);
                         break;
             }
-            c = 0;
-            r = '0';
       }
 }
